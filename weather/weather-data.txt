@@ -1,0 +1,434 @@
+README FILE FOR DAILY GLOBAL HISTORICAL CLIMATOLOGY NETWORK (GHCN-DAILY) 
+Version 2.1
+
+http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+I. DOWNLOAD QUICK START
+
+Start by downloading "ghcnd-stations.txt," which has metadata for all stations.
+
+Then download one of the following TAR files:
+
+  - "ghcnd-all.tar.gz" if you want all of GHCN-Daily, OR
+  - "ghcnd-gsn.tar.gz" if you only want the GCOS Surface Network (GSN), OR
+  - "ghcnd-hcn.tar.gz" if you only want the U.S. Historical Climatology Network 
+    (U.S. HCN).
+
+Then uncompress and untar the contents of the tar file, 
+e.g., by using the following Linux command:
+
+tar xzvf ghcnd_xxx.tar.gz
+
+Where "xxx" stands for "all", "hcn", or "gsn" as applicable. The files will be 
+extracted into a subdirectory under the directory where the command is issued.
+
+ALTERNATIVELY, if you only need data for one station:
+
+  - Find the station's name in "ghcnd-stations.txt" and note its station
+    identification code (e.g., PHOENIX AIRPORT is "USC00026481"); and
+  - Download the data file (i.e., ".dly" file) that corresponds to this code
+    (e.g., "USC00026481.dly" has the data for PHOENIX AIRPORT).  
+    Note that the ".dly" file is located in the "all" subdirectory.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+II. CONTENTS OF ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily
+
+all:                  Directory with ".dly" files for all of GHCN-Daily
+gsn:                  Directory with ".dly" files for the GCOS Surface Network 
+                     (GSN)
+hcn:                  Directory with ".dly" files for U.S. HCN
+
+ghcnd-all.tar.gz:  TAR file of the GZIP-compressed files in the "all" directory
+ghcnd-gsn.tar.gz:  TAR file of the GZIP-compressed "gsn" directory
+ghcnd-hcn.tar.gz:  TAR file of the GZIP-compressed "hcn" directory
+
+ghcnd-countries.txt:  List of country codes (FIPS) and names
+ghcnd-inventory.txt:  File listing the periods of record for each station and 
+                      element
+ghcnd-stations.txt:   List of stations and their metadata (e.g., coordinates)
+ghcnd-us-states.txt:  List of U.S. state codes used in ghcnd-stations.txt
+ghcnd-version.txt:    File that specifies the current version of GHCN Daily
+
+readme.txt:           This file
+status.txt:           Notes on the current status of GHCN-Daily
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+III. FORMAT OF DATA FILES (".dly" FILES)
+
+Each ".dly" file contains data for one station.  The name of the file
+corresponds to a station's identification code.  For example, "USC00026481.dly"
+contains the data for the station with the identification code USC00026481).
+
+Each record in a file contains one month of daily data.  The variables on each
+line include the following:
+
+------------------------------
+Variable   Columns   Type
+------------------------------
+ID            1-11   Character
+YEAR         12-15   Integer
+MONTH        16-17   Integer
+ELEMENT      18-21   Character
+VALUE1       22-26   Integer
+MFLAG1       27-27   Character
+QFLAG1       28-28   Character
+SFLAG1       29-29   Character
+VALUE2       30-34   Integer
+MFLAG2       35-35   Character
+QFLAG2       36-36   Character
+SFLAG2       37-37   Character
+  .           .          .
+  .           .          .
+  .           .          .
+VALUE31    262-266   Integer
+MFLAG31    267-267   Character
+QFLAG31    268-268   Character
+SFLAG31    269-269   Character
+------------------------------
+
+These variables have the following definitions:
+
+ID         is the station identification code.  Please see "ghcnd-stations.txt"
+           for a complete list of stations and their metadata.
+YEAR       is the year of the record.
+
+MONTH      is the month of the record.
+
+ELEMENT    is the element type.   There are five core elements as well as a number
+           of addition elements.  
+	   
+	   The five core elements are:
+
+           PRCP = Precipitation (tenths of mm)
+   	   SNOW = Snowfall (mm)
+	   SNWD = Snow depth (mm)
+           TMAX = Maximum temperature (tenths of degrees C)
+           TMIN = Minimum temperature (tenths of degrees C)
+	   
+	   The other elements are:
+	   
+	   DAPR = Number of days included in the multiday precipiation 
+	          total (MDPR)
+	   DATN = Number of days included in the multiday minimum temperature 
+	         (MDTN)
+	   DATX = Number of days included in the multiday maximum temperature 
+	          (MDTX)
+	   DWPR = Number of days with non-zero precipitation included in 
+	          multiday precipitation total (MDPR)
+	   EVAP = Evaporation of water from evaporation pan (tenths of mm)
+	   MDEV = Multiday evaporation total (tenths of mm; use with DAEV)
+	   MDPR = Multiday precipitation total (tenths of mm; use with DAPR and 
+	          DWPR, if available)
+	   MDSF = Multiday snowfall total 
+	   MDTN = Multiday minimum temperature (tenths of degrees C; use with DATN)
+	   MDTX = Multiday maximum temperature (tenths of degress C; use with DATX)
+	   MDWM = Multiday wind movement (km)
+           MNPN = Daily minimum temperature of water in an evaporation pan 
+	         (tenths of degrees C)
+           MXPN = Daily maximum temperature of water in an evaporation pan 
+	         (tenths of degrees C)
+	   SN*# = Minimum soil temperature where * corresponds to a code
+	          for ground cover and # corresponds to a code for soil 
+		  depth.  
+		  
+		  Ground cover codes include the following:
+		  0 = unknown
+		  1 = grass
+		  2 = fallow
+		  3 = bare ground
+		  4 = brome grass
+		  5 = sod
+		  7 = grass muck
+		  8 = bare muck
+		  (6 is not used)
+		  
+		  Depth codes include the following:
+		  1 = 5 cm
+		  2 = 10 cm
+		  3 = 20 cm
+		  4 = 50 cm
+		  5 = 100 cm
+		  6 = 150 cm
+		  7 = 180 cm
+		  
+	   SX*# = Maximum soil temperature where * corresponds to a code
+	          for ground cover and # corresponds to a code for soil 
+		  depth. See SN*# for ground cover and depth codes. 
+
+	
+ 	   TOBS = temperature at the time of observation (tenths of degrees C)
+	   
+           WDMV = 24-hour wind movement (km)
+	   
+	   WESF = Water Equivalent of SnowFall (tenths of mm)
+	   
+	   WT** = Weather Type where ** has one of the following values:
+	   
+                  01 = Fog, ice fog, or freezing fog (may include heavy fog)
+                  02 = Heavy fog or heaving freezing fog (not always 
+		       distinquished from fog)
+                  03 = Thunder
+                  04 = Ice pellets, sleet, snow pellets, or small hail 
+                  05 = Hail (may include small hail)
+                  06 = Glaze or rime 
+                  07 = Dust, volcanic ash, blowing dust, blowing sand, or 
+		       blowing obstruction
+                  08 = Smoke or haze 
+                  09 = Blowing or drifting snow
+                  10 = Tornado, waterspout, or funnel cloud 
+                  11 = High or damaging winds
+                  12 = Blowing spray
+                  13 = Mist
+                  14 = Drizzle
+                  15 = Freezing drizzle 
+                  16 = Rain (may include freezing rain, drizzle, and
+		       freezing drizzle) 
+                  17 = Freezing rain 
+                  18 = Snow, snow pellets, snow grains, or ice crystals
+                  19 = Unknown source of precipitation 
+                  21 = Ground fog 
+                  22 = Ice fog or freezing fog
+		  
+           WTEQ = Water equivalent of snow on the ground (tenths of mm)
+
+
+VALUE1     is the value on the first day of the month (missing = -9999).
+
+MFLAG1     is the measurement flag for the first day of the month.  There are
+           five possible values:
+
+           Blank = no measurement information applicable
+           B     = precipitation total formed from two 12-hour totals
+           D     = precipitation total formed from four six-hour totals
+	   L     = temperature appears to be lagged with respect to reported
+	           hour of observation 
+           T     = trace of precipitation, snowfall, or snow depth
+
+QFLAG1     is the quality flag for the first day of the month.  There are 
+           fourteen possible values:
+
+           Blank = did not fail any quality assurance check
+           D     = failed duplicate check
+           G     = failed gap check
+           I     = failed internal consistency check
+           K     = failed streak/frequent-value check
+           M     = failed megaconsistency check
+           N     = failed naught check
+           O     = failed climatological outlier check
+           R     = failed lagged range check
+           S     = failed spatial consistency check
+           T     = failed temporal consistency check
+           W     = temperature too warm for snow
+           X     = failed bounds check
+
+SFLAG1     is the source flag for the first day of the month.  There are 
+           twenty possible values (including blank):
+
+           Blank = No source (i.e., data value missing)
+           0     = U.S. Cooperative Summary of the Day (NCDC DSI-3200)
+           1     = U.S. Preliminary Cooperative Summary of the 
+                   Day -- Transmitted 
+           2     = U.S. Preliminary Cooperative Summary of the 
+                   Day -- Keyed from paper forms
+           6     = CDMP Cooperative Summary of the Day (NCDC DSI-3206)
+           A     = U.S. Automated Surface Observing System (ASOS) 
+                   real-time data (since January 1, 2006)
+	   a     = Australian data from the Australian Bureau of Meteorology
+           B     = U.S. ASOS data for October 2000-December 2005 (NCDC 
+                   DSI-3211)
+	   b     = Belarus update	   
+           F     = U.S. Fort data 
+           G     = Official Global Climate Observing System (GCOS) or 
+                   other government-supplied data
+           H     = High Plains Regional Climate Center real-time data
+           I     = International collection (non U.S. data received through
+	           personal contacts)
+           M     = Monthly METAR Extract (additional ASOS data)
+	   N     = Community Collaborative Rain, Hail,and Snow (CoCoRaHS)
+	   Q     = Data from several African countries that had been 
+	           "quarantined", that is, withheld from public release
+		   until permission was granted from the respective 
+	           meteorological services
+           R     = NCDC Reference Network Database (Climate Reference Network
+	           and Historical Climatology Network-Modernized)
+           S     = Global Summary of the Day (NCDC DSI-9618)
+                   NOTE: "S" values are derived from hourly synoptic reports
+                   exchanged on the Global Telecommunications System (GTS).
+                   Daily values derived in this fashion may differ significantly
+                   from "true" daily data, particularly for precipitation
+                   (i.e., use with caution).
+	   u     = Ukraine update	   
+           X     = U.S. First-Order Summary of the Day (NCDC DSI-3210)
+	   z     = Uzbekistan update
+	   
+VALUE2     is the value on the second day of the month
+
+MFLAG2     is the measurement flag for the second day of the month.
+
+QFLAG2     is the quality flag for the second day of the month.
+
+SFLAG2     is the source flag for the second day of the month.
+
+... and so on through the 31st day of the month.  Note: If the month has less 
+than 31 days, then the remaining variables are set to missing (e.g., for April, 
+VALUE31 = -9999, MFLAG31 = blank, QFLAG31 = blank, SFLAG31 = blank).
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+IV. FORMAT OF "ghcnd-stations.txt"
+
+------------------------------
+Variable   Columns   Type
+------------------------------
+ID            1-11   Character
+LATITUDE     13-20   Real
+LONGITUDE    22-30   Real
+ELEVATION    32-37   Real
+STATE        39-40   Character
+NAME         42-71   Character
+GSNFLAG      73-75   Character
+HCNFLAG      77-79   Character
+WMOID        81-85   Character
+------------------------------
+
+These variables have the following definitions:
+
+ID         is the station identification code.  Note that the first two
+           characters denote the FIPS  country code, the third character 
+           is a network code that identifies the station numbering system 
+           used, and the remaining eight characters contain the actual 
+           station ID. 
+
+           See "ghcnd-countries.txt" for a complete list of country codes.
+
+           The network code  has the following five values:
+
+           0 = unspecified (station identified by up to eight 
+	       alphanumeric characters)
+	   1 = Community Collaborative Rain, Hail,and Snow (CoCoRaHS)
+	       based identification number.  To ensure consistency with
+	       with GHCN Daily, all numbers in the original CoCoRaHS IDs
+	       have been left-filled to make them all four digits long. 
+	       In addition, the characters "-" and "_" have been removed 
+	       to ensure that the IDs do not exceed 11 characters when 
+	       preceded by "US1". For example, the CoCoRaHS ID 
+	       "AZ-MR-156" becomes "US1AZMR0156" in GHCN-Daily.
+           C = U.S. Cooperative Network identification number (last six 
+               characters of the GHCN-Daily ID)
+	   M = World Meteorological Organization ID (last five
+	       characters of the GHCN-Daily ID)
+	   N = Identification number used in data supplied by a 
+	       National Meteorological or Hydrological Center
+           W = WBAN identification number (last five characters of the 
+               GHCN-Daily ID)
+
+LATITUDE   is latitude of the station (in decimal degrees).
+
+LONGITUDE  is the longitude of the station (in decimal degrees).
+
+ELEVATION  is the elevation of the station (in meters, missing = -999.9).
+
+
+STATE      is the U.S. postal code for the state (for U.S. stations only).
+
+NAME       is the name of the station.
+
+GSNFLAG    is a flag that indicates whether the station is part of the GCOS
+           Surface Network (GSN). The flag is assigned by cross-referencing 
+           the number in the WMOID field with the official list of GSN 
+           stations. There are two possible values:
+
+           Blank = non-GSN station or WMO Station number not available
+           GSN   = GSN station 
+
+HCNFLAG    is a flag that indicates whether the station is part of the U.S.
+           Historical Climatology Network (HCN).  There are two possible values:
+
+           Blank = non-HCN station
+           HCN   = HCN station
+
+WMOID      is the World Meteorological Organization (WMO) number for the
+           station.  If the station has no WMO number, then the field is blank.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+V. FORMAT OF "ghcnd-countries.txt"
+
+------------------------------
+Variable   Columns   Type
+------------------------------
+CODE          1-2    Character
+NAME         4-50    Character
+------------------------------
+
+These variables have the following definitions:
+
+CODE       is the FIPS country code of the country where the station is 
+           located (from FIPS Publication 10-4 at 
+           www.cia.gov/cia/publications/factbook/appendix/appendix-d.html).
+
+NAME       is the name of the country.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+VI. FORMAT OF "ghcnd-us-states.txt"
+
+------------------------------
+Variable   Columns   Type
+------------------------------
+CODE          1-2    Character
+NAME         4-50    Character
+------------------------------
+
+These variables have the following definitions:
+
+CODE       is the POSTAL code of the U.S. state where the station is 
+           located 
+
+NAME       is the name of the state (or territory).
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+VII. FORMAT OF "ghcnd-inventory.txt"
+
+------------------------------
+Variable   Columns   Type
+------------------------------
+ID            1-11   Character
+LATITUDE     13-20   Real
+LONGITUDE    22-30   Real
+ELEMENT      32-35   Character
+FIRSTYEAR    37-40   Integer
+LASTYEAR     42-45   Integer
+------------------------------
+
+These variables have the following definitions:
+
+ID         is the station identification code.  Please see "ghcnd-stations.txt"
+           for a complete list of stations and their metadata.
+
+LATITUDE   is the latitude of the station (in decimal degrees).
+
+LONGITUDE  is the longitude of the station (in decimal degrees).
+
+ELEMENT    is the element type.  See section III for a definition of elements.
+
+FIRSTYEAR  is the first year of unflagged data for the given element.
+
+LASTYEAR   is the last year of unflagged data for the given element.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+For additional information, please send an e-mail to ncdc.ghcnd@noaa.gov.

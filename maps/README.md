@@ -1,0 +1,1 @@
+Shapefiles for administrative boundaries levels 1 and 2 retrieved from http://www.gadm.org and thinned with http://www.mapshaper.org.
