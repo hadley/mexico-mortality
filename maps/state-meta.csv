@@ -1,33 +1,33 @@
-"id","name","state_id"
-"MX.AG","Aguascalientes",1
-"MX.BN","Baja California",2
-"MX.BS","Baja California Sur",3
-"MX.CM","Campeche",4
-"MX.CP","Chiapas",7
-"MX.CH","Chihuahua",8
-"MX.CA","Coahuila",5
-"MX.CL","Colima",6
-"MX.DF","Distrito Federal",9
-"MX.DU","Durango",10
-"MX.GJ","Guanajuato",11
-"MX.GR","Guerrero",12
-"MX.HI","Hidalgo",13
-"MX.JA","Jalisco",14
-"MX.MX","Mexico",15
-"MX.MC","Michoacan",16
-"MX.MR","Morelos",17
-"MX.NA","Nayarit",18
-"MX.NL","Nuevo Leon",19
-"MX.OA","Oaxaca",20
-"MX.PU","Puebla",21
-"MX.QE","Queretaro",22
-"MX.QR","Quintana Roo",23
-"MX.SL","San Luis Potosi",24
-"MX.SI","Sinaloa",25
-"MX.SO","Sonora",26
-"MX.TB","Tabasco",27
-"MX.TM","Tamaulipas",28
-"MX.TL","Tlaxcala",29
-"MX.VE","Veracruz",30
-"MX.YU","Yucatan",31
-"MX.ZA","Zacatecas",32
+"state","name"
+4,"Campeche"
+3,"Baja California Sur"
+2,"Baja California"
+1,"Aguascalientes"
+32,"Zacatecas"
+31,"Yucatan"
+30,"Veracruz de Ignacio de la Llave"
+29,"Tlaxcala"
+28,"Tamaulipas"
+27,"Tabasco"
+26,"Sonora"
+25,"Sinaloa"
+24,"San Luis Potosi"
+23,"Quintana Roo"
+22,"Queretaro"
+21,"Puebla"
+20,"Oaxaca"
+19,"Nuevo Leon"
+18,"Nayarit"
+17,"Morelos"
+16,"Michoacan de Ocampo"
+15,"Mexico"
+14,"Jalisco"
+13,"Hidalgo"
+12,"Guerrero"
+11,"Guanajuato"
+10,"Durango"
+9,"Distrito Federal"
+8,"Chihuahua"
+7,"Chiapas"
+6,"Colima"
+5,"Coahuila de Zaragoza"
