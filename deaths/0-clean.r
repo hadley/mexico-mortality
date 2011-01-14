@@ -13,3 +13,28 @@ names(deaths) <- c("yob", "mob", "dob", "sex", "age_unit", "age", "nation",
  "pregnant", "labor_cod", "labor_c")
 
 write.csv(deaths, bzfile("deaths08.csv.bz2"), row.names = FALSE)
+
+deaths$hod[deaths$hod == 99] <- NA
+deaths$hod[deaths$hod == 24] <- 0
+
+deaths$minod[deaths$minod == 99] <- NA
+qplot(minod, data = deaths, binwidth = 1)
+qplot(minod, data = deaths, binwidth = 5)
+
+
+qplot(hod, data = deaths, binwidth = 1, geom = "freqpoly")
+
+code <- arrange(count(deaths, "cod"), desc(freq))
+
+qplot(hod, ..density.., data = subset(deaths, cod %in% code$cod[1:20]), binwidth = 1, geom = "freqpoly") + facet_wrap(~ cod)
+
+qplot(factor(hod), ..density.., data = subset(deaths, cod %in% code$cod[1:20]), binwidth = 1, geom = "freqpoly", group = 1) + facet_wrap(~ cod)
+
+qplot(factor(hod), ..density.., data = subset(deaths, cod %in% code$cod[1:20] & !is.na(hod)), geom = "freqpoly", group = cod, colour = substr(cod, 1, 1))
+
+
+head(code, 20)
+names(code)[1] <- "code"
+
+disease <- read.csv("../disease/icd-main.csv")
+code <- join(code, disease)
